@@ -1,0 +1,40 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Native Dependencies</h1>
+<hr />
+
+<pre>
+@echo
+</pre>
+
+
+@code {
+    struct Legs
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+    }
+
+    const string CPPLIB = "Operations";
+
+    [DllImport(CPPLIB, CallingConvention = CallingConvention.Cdecl)]
+    static extern float hypotenuse(Legs legs);
+
+    string echo = "Ready.";
+
+    void CallCppFunction()
+    {
+        var legs = new Legs { X = 9, Y = 11 };
+        var h = hypotenuse(legs);
+
+        echo = string.Format("Hypotenuse of {0} is {1}", legs, h);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(2000);
+        CallCppFunction();
+    }
+}
