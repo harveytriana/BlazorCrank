@@ -1,14 +1,10 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
-
 <h1>Native Dependencies</h1>
 <hr />
-
 <pre>
 @echo
 </pre>
-
 
 @code {
     struct Legs
@@ -29,7 +25,7 @@
         var legs = new Legs { X = 9, Y = 11 };
         var h = hypotenuse(legs);
 
-        echo = string.Format("Hypotenuse of {0} is {1}", legs, h);
+        echo = string.Format("Call C++\nHypotenuse({0}, {1}) = {2}", legs.X, legs.Y, h);
     }
 
     protected override async Task OnInitializedAsync()
