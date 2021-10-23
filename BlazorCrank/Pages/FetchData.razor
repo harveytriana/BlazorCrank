@@ -1,57 +1,54 @@
 ﻿@page "/fetchdata"
-@inject HttpClient Http
+@using System.Text
 
-<PageTitle>Weather forecast</PageTitle>
+<h1>Native Dependencies Callbacks</h1>
+<hr />
+<pre>
+@echo
+</pre>
 
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<p @onclick="Test">Test</p>
 
 @code {
-    private WeatherForecast[]? forecasts;
+    // CALLBACK
+    delegate void CppCallback(int number);
+    [DllImport("CallbackSample")]
+    static extern void UnmanagedPrompt(CppCallback cppCallback);
 
-    protected override async Task OnInitializedAsync()
+    string echo = "Ready.";
+
+    async Task Test()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        Echo("Try Callbacks");
+        Echo("Assertion at /__w/1/s/src/mono/mono/metadata/loader.c:1806, condition `<disabled>' not met");
+
+
+        await Task.Delay(2000);
+        try {
+            UnmanagedPrompt(HandlePrompt);
+        }catch(Exception e) {
+            Echo(e.Message);
+        }
+
     }
 
-    public class WeatherForecast
+    private void HandlePrompt(int number)
     {
-        public DateTime Date { get; set; }
+        Echo($"Called back by unmanaged side. Number: {number}");
+    }
 
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    void Echo(string? message = null)
+    {
+        if (message is null) {
+            echo = string.Empty;
+        }
+        else {
+            var sb = new StringBuilder();
+            sb.Append(echo);
+            sb.Append(message);
+            sb.Append("\n");
+            echo = sb.ToString();
+            StateHasChanged();
+        }
     }
 }

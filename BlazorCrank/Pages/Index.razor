@@ -14,16 +14,9 @@
         public float Y { get; set; }
     }
 
-    const string CPPLIB = "Operations";
-
     // OPERATIONS
-    [DllImport(CPPLIB, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("Operations", CallingConvention = CallingConvention.Cdecl)]
     static extern float hypotenuse(Legs legs);
-
-    // CALLBACK
-    delegate void CppCallback(int number);
-    [DllImport(CPPLIB)] 
-    static extern void UnmanagedPrompt(CppCallback cppCallback);
 
     string echo = "Ready.";
 
@@ -39,16 +32,6 @@
     {
         await Task.Delay(2000);
         CallCppFunction();
-
-        // events
-        await Task.Delay(2000);
-        Echo("Try Callbacks");
-        //UnmanagedPrompt(HandlePrompt);
-    }
-
-    private void HandlePrompt(int number)
-    {
-        Echo($"Called back by unmanaged side. Number: {number}");
     }
 
     void Echo(string? message = null)
