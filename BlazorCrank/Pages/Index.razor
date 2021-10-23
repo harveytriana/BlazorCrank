@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using System.Text
 
 <h1>Native Dependencies</h1>
 <hr />
@@ -15,8 +16,14 @@
 
     const string CPPLIB = "Operations";
 
+    // OPERATIONS
     [DllImport(CPPLIB, CallingConvention = CallingConvention.Cdecl)]
     static extern float hypotenuse(Legs legs);
+
+    // CALLBACK
+    delegate void CppCallback(int number);
+    [DllImport(CPPLIB)] 
+    static extern void UnmanagedPrompt(CppCallback cppCallback);
 
     string echo = "Ready.";
 
@@ -25,12 +32,36 @@
         var legs = new Legs { X = 9, Y = 11 };
         var h = hypotenuse(legs);
 
-        echo = string.Format("Call C++\nHypotenuse({0}, {1}) = {2}", legs.X, legs.Y, h);
+        Echo(string.Format("Call C++\nHypotenuse({0}, {1}) = {2}\n", legs.X, legs.Y, h));
     }
 
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(2000);
         CallCppFunction();
+
+        // events
+        await Task.Delay(2000);
+        Echo("Try Callbacks");
+        //UnmanagedPrompt(HandlePrompt);
+    }
+
+    private void HandlePrompt(int number)
+    {
+        Echo($"Called back by unmanaged side. Number: {number}");
+    }
+
+    void Echo(string? message = null)
+    {
+        if (message is null) {
+            echo = string.Empty;
+        }
+        else {
+            var sb = new StringBuilder();
+            sb.Append(echo);
+            sb.Append(message);
+            sb.Append("\n");
+            echo = sb.ToString();
+        }
     }
 }
