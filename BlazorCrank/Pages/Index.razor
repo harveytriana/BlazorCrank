@@ -1,11 +1,9 @@
 ﻿@page "/"
 @using System.Text
 
-<h1>Native Dependencies</h1>
+<h1>Native Dependencies - Basic</h1>
 <hr />
-<pre>
-@echo
-</pre>
+<pre>@echo</pre>
 
 @code {
     struct Legs
@@ -18,20 +16,21 @@
     [DllImport("Operations", CallingConvention = CallingConvention.Cdecl)]
     static extern float hypotenuse(Legs legs);
 
-    string echo = "Ready.";
+    string echo = string.Empty;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Echo("Call C++ function...");
+        await Task.Delay(2000);
+        CallCppFunction();
+    }
 
     void CallCppFunction()
     {
         var legs = new Legs { X = 9, Y = 11 };
         var h = hypotenuse(legs);
 
-        Echo(string.Format("Call C++\nHypotenuse({0}, {1}) = {2}\n", legs.X, legs.Y, h));
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await Task.Delay(2000);
-        CallCppFunction();
+        Echo(string.Format("Hypotenuse({0}, {1}) = {2}\n", legs.X, legs.Y, h));
     }
 
     void Echo(string? message = null)
@@ -45,6 +44,7 @@
             sb.Append(message);
             sb.Append("\n");
             echo = sb.ToString();
+            StateHasChanged();
         }
     }
 }

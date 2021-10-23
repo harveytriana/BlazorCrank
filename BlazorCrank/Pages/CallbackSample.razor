@@ -1,39 +1,30 @@
-﻿@page "/fetchdata"
+﻿@page "/callback-sample"
 @using System.Text
 
-<h1>Native Dependencies Callbacks</h1>
+<h1>Native Dependencies - Callbacks</h1>
 <hr />
-<pre>
-@echo
-</pre>
-
-<p @onclick="Test">Test</p>
+<pre>@echo</pre>
 
 @code {
-    // CALLBACK
     delegate void CppCallback(int number);
+    
     [DllImport("CallbackSample")]
     static extern void UnmanagedPrompt(CppCallback cppCallback);
 
-    string echo = "Ready.";
+    string echo = string.Empty;
 
-    async Task Test()
+    protected override async Task OnInitializedAsync()
     {
-        Echo("Try Callbacks");
-        Echo("Assertion at /__w/1/s/src/mono/mono/metadata/loader.c:1806, condition `<disabled>' not met");
-
-
+        Echo("Try C++ Callback...");
         await Task.Delay(2000);
-        try {
-            UnmanagedPrompt(HandlePrompt);
-        }catch(Exception e) {
-            Echo(e.Message);
-        }
 
+        Echo("Assertion at /__w/1/s/src/mono/mono/metadata/loader.c:1806, condition `<disabled>' not met");
+        UnmanagedPrompt(HandlePrompt);
     }
 
     private void HandlePrompt(int number)
     {
+        Echo(); // clear
         Echo($"Called back by unmanaged side. Number: {number}");
     }
 
