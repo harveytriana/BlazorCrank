@@ -6,8 +6,9 @@
 #else
 #  define E
 #endif
-
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -17,10 +18,13 @@ typedef void(__stdcall* PFN_PROMPT)(int number);
 // implementation
 extern "C" {
 	E void __stdcall UnmanagedPrompt(PFN_PROMPT fn) {
-		// debugging...
-		cout << "Inside UnmanagedPrompt" << endl;
-
-		// something...
-		fn(1234);
+		// simulation
+		for (int i = 1; i <= 10; i++)
+		{
+			this_thread::sleep_for(chrono::milliseconds(1000));
+			
+			cout << "Trigger: " << i << endl;
+			fn(i); 
+		}
 	};
 }
