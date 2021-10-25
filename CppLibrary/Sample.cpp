@@ -10,17 +10,17 @@ using namespace std;
 
 struct  Legs
 {
-	float X;
-	float Y;
+    float X;
+    float Y;
 };
 
 extern "C" {
-	E void greeting() {
-		cout << "Hello C++" << endl;
-	}
+    E void greeting() {
+        cout << "Hello C++" << endl;
+    }
 
-	E float hypotenuse(Legs legs) {
-		return (float)sqrt(pow(legs.X, 2.0) + pow(legs.Y, 2.0));
-	}
+    E float hypotenuse(Legs legs) {
+        return (float)sqrt(pow(legs.X, 2.0) + pow(legs.Y, 2.0));
+    }
 }
 
