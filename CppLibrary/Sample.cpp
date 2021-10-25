@@ -1,4 +1,8 @@
-#define E __declspec(dllexport)
+#ifdef _WIN32
+#  define E __declspec( dllexport )
+#else
+#  define E
+#endif
 #include<iostream>
 #include<cmath>
 
@@ -16,15 +20,7 @@ extern "C" {
 	}
 
 	E float hypotenuse(Legs legs) {
-		// cout << "X: " << legs.X << endl;
-		// cout << "Y: " << legs.Y << endl;
 		return (float)sqrt(pow(legs.X, 2.0) + pow(legs.Y, 2.0));
 	}
-
-	/*
-	Also:
-	auto h = std::hypot(x, y);
-	x, y, h may have types float, double, ...
-	*/
 }
 

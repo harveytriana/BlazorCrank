@@ -1,14 +1,12 @@
-/*
-	CPP/Operations.cpp
-*/
 #ifdef _WIN32
 #  define E __declspec( dllexport )
 #else
 #  define E
 #endif
-
 #include<cmath>
 #include<iostream>
+
+using namespace std;
 
 struct  Legs
 {
@@ -16,12 +14,12 @@ struct  Legs
 	float Y;
 };
 
-using namespace std;
-
 extern "C" {
+	E void greeting() {
+		cout << "Hello C++" << endl;
+	}
+
 	E float hypotenuse(Legs legs) {
-		cout << "LEG X: " << legs.X << endl;
-		cout << "LEG Y: " << legs.Y << endl;
 		return sqrt(pow(legs.X, 2.0) + pow(legs.Y, 2.0));
 	}
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -12,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<NativeFileReference Include="CPP/Operations.cpp" />
-		<NativeFileReference Include="CPP/CallbackSample.cpp" />
+		<NativeFileReference Include="CppLibrary/Sample.cpp" />
+		<NativeFileReference Include="CppLibrary/CallbackSample.cpp" />
 	</ItemGroup>
 </Project>

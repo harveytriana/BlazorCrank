@@ -1,7 +1,11 @@
-﻿
+﻿/*
+ * Some C# interaction experiments with C++ code
+ * By: harveytriana@gmail.com
+ */
 using System.Runtime.InteropServices;
 
-Console.WriteLine("C++ Calls");
+Console.WriteLine("C++ Calls Demostration");
+Console.WriteLine("----------------------");
 
 new CallingCpp().ExecuteSamples();
 
@@ -24,21 +28,23 @@ class CallingCpp
     [DllImport(CPPLIB)]
     static extern float hypotenuse(Legs legs);
 
-    #region Try Delegates
+    // callback
     public delegate void CppCallback(int number);
     [DllImport(CPPLIB)]
     static extern void UnmanagedPrompt(CppCallback cppCallback);
-    #endregion
 
     public void ExecuteSamples()
     {
+        Console.WriteLine("Basic test:");
         greeting();
 
+        Console.WriteLine("\nFunction test passing a structure as parameter:");
         var legs = new Legs { X = 9, Y = 11 };
         var h = hypotenuse(legs);
-        Console.WriteLine("\nHypotenuse({0}, {1}) = {2}\n", legs.X, legs.Y, h);
+        Console.WriteLine("From C++: Hypotenuse({0}, {1}) = {2}\n", legs.X, legs.Y, h);
 
-        // events
+        // callback
+        Console.WriteLine("Callback from C++");
         UnmanagedPrompt(HandlePrompt);
     }
 

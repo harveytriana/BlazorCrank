@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using System.Text
 
-<h1>Native Dependencies - Basic</h1>
+<h1>Native Dependencies - Experiments</h1>
 <hr />
 <pre>@echo</pre>
 
@@ -12,38 +12,38 @@
         public float Y { get; set; }
     }
 
-    // OPERATIONS
-    [DllImport("Operations", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("Sample")]
+    static extern void greeting();
+
+    [DllImport("Sample", CallingConvention = CallingConvention.Cdecl)]
     static extern float hypotenuse(Legs legs);
 
     string echo = string.Empty;
-    
+
     protected override async Task OnInitializedAsync()
     {
         Echo("Call C++ function...");
-        await Task.Delay(2000);
-        CallCppFunction();
+        await Task.Delay(2000); 
+        CallCppFunctions();
     }
 
-    void CallCppFunction()
+    void CallCppFunctions()
     {
+        greeting(); // console output
+
         var legs = new Legs { X = 9, Y = 11 };
         var h = hypotenuse(legs);
 
-        Echo(string.Format("Hypotenuse({0}, {1}) = {2}\n", legs.X, legs.Y, h));
+        Echo("Function passing a structure as parameter:");
+        Echo(string.Format("From C++: Hypotenuse({0}, {1}) = {2}\n", legs.X, legs.Y, h));
     }
 
     void Echo(string? message = null)
     {
-        if (message is null) {
+        if (message is null)
             echo = string.Empty;
-        }
         else {
-            var sb = new StringBuilder();
-            sb.Append(echo);
-            sb.Append(message);
-            sb.Append("\n");
-            echo = sb.ToString();
+             echo += $"{message}\n";
             StateHasChanged();
         }
     }

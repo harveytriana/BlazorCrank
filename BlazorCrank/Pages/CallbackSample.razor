@@ -18,30 +18,24 @@
         Echo("Try C++ Callback...");
         await Task.Delay(2000);
 
-        // If successful, this messages should disappear
-        Echo("Assertion at /__w/1/s/src/mono/mono/metadata/loader.c:1806, condition '<disabled>' not met");
-        Echo("Review messages from the browser development tools, console.");
-
         UnmanagedPrompt(HandlePrompt);
+
+        // Exception:
+        // Assertion at /__w/1/s/src/mono/mono/metadata/loader.c:1806, condition '<disabled>' not met
+        // Review messages from the browser development tools, console.
     }
 
     private void HandlePrompt(int number)
     {
-        Echo(); // clear
         Echo($"Called back by unmanaged side. Number: {number}");
     }
 
     void Echo(string? message = null)
     {
-        if (message is null) {
+        if (message is null)
             echo = string.Empty;
-        }
         else {
-            var sb = new StringBuilder();
-            sb.Append(echo);
-            sb.Append(message);
-            sb.Append("\n");
-            echo = sb.ToString();
+            echo += $"{message}\n";
             StateHasChanged();
         }
     }
