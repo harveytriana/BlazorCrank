@@ -11,7 +11,7 @@ The same modules from this C ++ library are then taken to a Blazor WASM project.
  
 You can run the ```ConsoleAppTest``` console project to get this result:
 
-[]()
+[](https://github.com/harveytriana/BlazorCrank/blob/master/Images/cs-cpp-console.gif)
  
 When run in Blazor project then following images show the result.
 
