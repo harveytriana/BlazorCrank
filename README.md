@@ -17,9 +17,11 @@ When run in Blazor project then following images show the result.
 
 Basic sample:
 
-[]()
+![Basic Sample](https://github.com/harveytriana/BlazorCrank/blob/master/Images/bz-cpp-1.png)
 
 Callback issue:
 
-I estimate that there are no errors in the code, maybe the behavior should be corrected
+![Callback Sample](https://github.com/harveytriana/BlazorCrank/blob/master/Images/bz-cpp-2.png)
+
+
 
