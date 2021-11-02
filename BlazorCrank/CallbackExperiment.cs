@@ -6,7 +6,7 @@ namespace BlazorCrank
     {
         #region Echo
         public delegate Task EchoHandler(string? message);
-        public static EchoHandler Echo;
+        public static readonly EchoHandler? Echo;
         #endregion
 
         static readonly delegate* unmanaged<int, void> _handlePromptPointer = &HandlePrompt;
@@ -23,7 +23,6 @@ namespace BlazorCrank
         private static void HandlePrompt(int number)
         {
             var message = $"Called back by unmanaged side. Number: {number}";
-            // Console.WriteLine(message); OK
 
             Echo?.Invoke(message);
         }

@@ -1,5 +1,6 @@
 ﻿@page "/callback-sample"
 @using System.Text
+@implements IDisposable
 
 <h1>Native Dependencies - Callbacks</h1>
 <hr />
@@ -26,7 +27,13 @@
             echo = string.Empty;
         else {
             echo += $"{message}\n";
+            // Note. Does not update UI in UnmanagedCallersOnly process
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    public void Dispose()
+    {
+        CallbackExperiment.Echo -= Echo;
     }
 }
