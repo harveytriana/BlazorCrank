@@ -21,7 +21,7 @@
 
     async Task Echo(string? message = null)
     {
-        Console.WriteLine(message);
+        Console.WriteLine("Echo: {0}", message);
 
         if (message is null)
             echo = string.Empty;

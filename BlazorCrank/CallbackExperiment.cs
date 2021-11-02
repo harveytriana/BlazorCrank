@@ -4,7 +4,7 @@ namespace BlazorCrank
 {
     public unsafe class CallbackExperiment
     {
-        #region Echo
+        #region Echo to consumer
         public delegate Task EchoHandler(string? message);
         public static EchoHandler? Echo;
         #endregion
