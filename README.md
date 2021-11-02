@@ -16,16 +16,6 @@ Basic sample:
 
 ![Basic Sample](https://github.com/harveytriana/BlazorCrank/blob/master/Images/bz-cpp-1.png)
 
-Callback issue:
-
-![Callback Sample](https://github.com/harveytriana/BlazorCrank/blob/master/Images/bz-cpp-2.png)
-
-The following exception occurs.
- 
-```
-Assertion at /__w/1/s/src/mono/mono/metadata/loader.c:1806, condition '<disabled>' not met
-```
-
 --
 
 P.S. The name BlazorCrank is irrelevant
