@@ -23,7 +23,7 @@
     protected override async Task OnInitializedAsync()
     {
         Echo("Call C++ function...");
-        await Task.Delay(200); 
+        await Task.Delay(200);
         CallCppFunctions();
     }
 
@@ -43,7 +43,7 @@
         if (message is null)
             echo = string.Empty;
         else {
-             echo += $"{message}\n";
+            echo += $"{message}\n";
             StateHasChanged();
         }
     }

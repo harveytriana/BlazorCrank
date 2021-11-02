@@ -6,7 +6,7 @@ namespace BlazorCrank
     {
         #region Echo
         public delegate Task EchoHandler(string? message);
-        public static readonly EchoHandler? Echo;
+        public static EchoHandler? Echo;
         #endregion
 
         static readonly delegate* unmanaged<int, void> _handlePromptPointer = &HandlePrompt;

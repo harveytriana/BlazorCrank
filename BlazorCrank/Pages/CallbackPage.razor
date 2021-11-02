@@ -27,7 +27,8 @@
             echo = string.Empty;
         else {
             echo += $"{message}\n";
-            // Note. Does not update UI in UnmanagedCallersOnly process
+            // Note. 
+            // Does not update UI immediately in Unmanaged CallersOnly process
             await InvokeAsync(StateHasChanged);
         }
     }
