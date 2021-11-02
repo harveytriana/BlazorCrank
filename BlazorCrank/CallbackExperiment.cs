@@ -23,7 +23,7 @@ namespace BlazorCrank
         private static void HandlePrompt(int number)
         {
             var message = $"Called back by unmanaged side. Number: {number}";
-            Console.WriteLine(message);
+            // Console.WriteLine(message); OK
 
             Echo?.Invoke(message);
         }

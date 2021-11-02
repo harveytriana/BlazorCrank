@@ -20,6 +20,8 @@
 
     async Task Echo(string? message = null)
     {
+        Console.WriteLine(message);
+
         if (message is null)
             echo = string.Empty;
         else {
