@@ -3,6 +3,7 @@
 
 <h1>Native Dependencies - Experiments</h1>
 <hr />
+<p>Look at the console output in browser development tools</p>
 <pre>@echo</pre>
 
 @code {
@@ -22,8 +23,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Echo("Call C++ function...");
-        await Task.Delay(200);
+        Echo("Calling C++ function...");
+        await Task.Delay(2000);
         CallCppFunctions();
     }
 

@@ -4,6 +4,7 @@
 
 <h1>Native Dependencies - Callbacks</h1>
 <hr />
+<p>Look at the console output in browser development tools</p>
 <pre>@echo</pre>
 
 @code {
@@ -12,7 +13,6 @@
     protected override async Task OnInitializedAsync()
     {
         await Echo("Try C++ Callback...");
-        await Task.Delay(200);
 
         CallbackExperiment.Echo += Echo;
 
