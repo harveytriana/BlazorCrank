@@ -30,6 +30,7 @@ class CallingCpp
 
     // callback
     public delegate void CppCallback(int number);
+
     [DllImport(CPPLIB)]
     static extern void UnmanagedPrompt(CppCallback cppCallback);
 

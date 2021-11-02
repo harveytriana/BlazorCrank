@@ -18,7 +18,7 @@ extern "C" {
         // simulation of somethng
         for (int i = 1; i <= 10; i++)
         {
-            this_thread::sleep_for(chrono::milliseconds(1000));
+            this_thread::sleep_for(chrono::milliseconds(250));
             fn(i); // trigger the callback
         }
     };
