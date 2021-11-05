@@ -30,7 +30,7 @@ In the current publish, I rearranged the code a bit in reference to Aleksey Klig
 
 ![Callback Page](https://github.com/harveytriana/BlazorCrank/blob/master/Images/bz-cpp-3.png)
 
-Information »» [Document how to setup callbacks for native dependencies in Blazor WebAssembly](https://github.com/dotnet/AspNetCore.Docs/issues/23661)
+Moore information »» [Document how to setup callbacks for native dependencies in Blazor WebAssembly](https://github.com/dotnet/AspNetCore.Docs/issues/23661)
 
 To be continue.
 
