@@ -4,10 +4,9 @@ namespace BlazorCrank
 {
     public unsafe class CallbackExperiment
     {
-        #region Echo to consumer
+        // Echo to consumer
         public delegate Task EchoHandler(string? message);
         public static EchoHandler? Echo;
-        #endregion
 
         static readonly delegate* unmanaged<int, void> _handlePromptPointer = &HandlePrompt;
 
