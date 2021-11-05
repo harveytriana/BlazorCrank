@@ -12,9 +12,24 @@ You can run the ```ConsoleAppTest``` console project to get this result:
  
 When run in Blazor project then following images show the result.
 
-Basic sample:
+### Running Functions
 
 ![Basic Sample](https://github.com/harveytriana/BlazorCrank/blob/master/Images/bz-cpp-1.png)
+
+### Running Callbacks
+
+In first instance, I tried use equivalent code on console application. When try to run the code with callback, an exception occurs.
+
+```
+Assertion at /__w/1/s/src/mono/mono/metadata/loader.c:1806, condition '<disabled>' not met
+```
+
+Then I put a Issue to MS Team: https://github.com/dotnet/runtime/issues/60824
+
+In the current publish, I rearranged the code a bit in reference to Aleksey Kliger's answer. The result is that we can execute the callback, receive the result of the function, but not update the UI on the page, which happens at the end of the process.
+
+To be continue.
+
 
 --
 
