@@ -28,7 +28,9 @@ Then I put a «Issue» to MS Team: https://github.com/dotnet/runtime/issues/6082
 
 In the current publish, I rearranged the code a bit in reference to Aleksey Kliger's answer, which requires the use of explicit pointers (unsafe in C#). The result is that we can execute the callback, receive the result of the function, but not update the UI on the page, which happens at the end of the process.
 
-Information »» [Document how to setup callbacks for native dependencies in Blazor WebAssembly](https://github.com/dotnet/AspNetCore.Docs/issues/23661)
+![Callback Page](https://github.com/harveytriana/BlazorCrank/blob/master/Images/bz-cpp-3.png)
+
+Moore information »» [Document how to setup callbacks for native dependencies in Blazor WebAssembly](https://github.com/dotnet/AspNetCore.Docs/issues/23661)
 
 To be continue.
 
