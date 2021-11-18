@@ -22,17 +22,22 @@ class CallingCpp
         public float Y { get; set; }
     }
 
-    [DllImport(CPPLIB)]
-    static extern void greeting();
-
-    [DllImport(CPPLIB)]
-    static extern float hypotenuse(Legs legs);
+    [DllImport(CPPLIB)] static extern void greeting();
+    [DllImport(CPPLIB)] static extern float hypotenuse(Legs legs);
 
     // callback
     public delegate void CppCallback(int number);
 
-    [DllImport(CPPLIB)]
-    static extern void UnmanagedPrompt(CppCallback cppCallback);
+    [DllImport(CPPLIB)] static extern void UnmanagedPrompt(CppCallback cppCallback);
+
+    struct XY
+    {
+        public int x { get; set; }
+        public int y { get; set; }
+    }
+
+    [DllImport(CPPLIB)] static extern XY get_xy();
+    [DllImport(CPPLIB)] static extern int sum_xy(XY p);
 
     public void ExecuteSamples()
     {
@@ -47,6 +52,13 @@ class CallingCpp
         // callback
         Console.WriteLine("Callback from C++");
         UnmanagedPrompt(HandlePrompt);
+
+        var xy = get_xy();
+        var sum = sum_xy(xy);
+
+        Console.WriteLine("Struct Sample");
+        Console.WriteLine(string.Format("x: {0} y: {1}\n", xy.x, xy.y));
+        Console.WriteLine(string.Format("Sum: {0}", sum));
     }
 
     private void HandlePrompt(int number)

@@ -7,17 +7,10 @@
 <pre>@echo</pre>
 
 @code {
-    struct Legs
-    {
-        public float X { get; set; }
-        public float Y { get; set; }
-    }
-
-    [DllImport("Sample")]
-    static extern void greeting();
-
-    [DllImport("Sample", CallingConvention = CallingConvention.Cdecl)]
-    static extern float hypotenuse(Legs legs);
+    record struct Legs(float X, float Y);
+    
+    [DllImport("Sample")] static extern void greeting();
+    [DllImport("Sample")] static extern float hypotenuse(Legs legs);
 
     string echo = string.Empty;
 
