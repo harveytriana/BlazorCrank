@@ -3,26 +3,17 @@
 
 <h1>Native Dependencies - Experiments</h1>
 <hr />
-<p>Look at the console output in browser development tools</p>
+<p>Working with C++ struct</p>
 <pre>@echo</pre>
 
 @code {
+    const string CPPLIB = "StructSample";
+
     record struct XY(int x, int y);
 
-    //[StructLayout(LayoutKind.Sequential)]
-    //struct XY
-    //{
-    //    public int x { get; set; }
-    //    public int y { get; set; }
-    //}
-
-    //[DllImport("StructSample")] static extern XY get_xy();
-    [DllImport("StructSample")] 
-    // *** [return : MarshalAs(UnmanagedType.LPStruct)]
-    static extern XY get_xy();
-    // *** static extern IntPtr get_xy();
-
-    [DllImport("StructSample")] static extern int sum_xy(XY p);
+    // POINTER
+    [DllImport(CPPLIB)] static extern IntPtr get_xy_ptr();
+    [DllImport(CPPLIB)] static extern int sum_xy(XY p);
 
     string echo = string.Empty;
 
@@ -39,17 +30,12 @@
         Echo(string.Format("x: {0} y: {1}\n", xy.x, xy.y));
         Echo(string.Format("Sum: {0}", sum));
 
-        // fails here
-        var xyCpp = get_xy();
+        // Pointers for emscripten
+        IntPtr pointer = get_xy_ptr();
+        XY xyCpp = Marshal.PtrToStructure<XY>(pointer);
 
         Echo("\nGetting a structure from C++ Library");
         Echo(string.Format("xyCpp: {0}", xyCpp));
-
-        // ***
-        //var lexx = Marshal.PtrToStructure<XY>(xyCpp);
-
-        // Echo(string.Format("lexx: {0}", lexx));
-        // Echo(string.Format("lexx.x: {0}", lexx.x));
     }
 
     void Echo(string? message = null)

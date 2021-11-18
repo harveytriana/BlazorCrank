@@ -21,7 +21,7 @@
     <ClCompile Include="CallbackSample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\BlazorCrank\CppLibrary\StructSample.cpp">
+    <ClCompile Include="StructSample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
