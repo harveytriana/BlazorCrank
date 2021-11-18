@@ -35,6 +35,11 @@ extern "C" {
 		return &p;
 	}
 
+	E int sum_xy(XY p) {
+		return p.x + p.y;
+	}
+
+	// works in Console
 	E XY get_xy() {
 		XY p;
 		p.x = 15;

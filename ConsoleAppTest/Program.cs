@@ -7,6 +7,7 @@ Console.WriteLine("C++ Calls Demostration");
 Console.WriteLine("----------------------");
 
 // OK
-// new CppSamples().Run();
+new CppSamples().Run();
 
+// OK
 CppStructFromPointer.Run();

@@ -34,15 +34,15 @@ extern "C" {
 		return &p;
 	}
 
-	// doesn´t works for wasm 
-	E XY get_xy() {
-		XY p;
-		p.x = 15;
-		p.y = 23;
-		return p;
-	}
-
 	E int sum_xy(XY p) {
 		return p.x + p.y;
 	}
+
+	// doesn´t works for wasm emscripten
+	//E XY get_xy() {
+	//	XY p;
+	//	p.x = 15;
+	//	p.y = 23;
+	//	return p;
+	//}
 }
