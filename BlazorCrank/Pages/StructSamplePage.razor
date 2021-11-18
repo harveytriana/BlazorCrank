@@ -9,7 +9,19 @@
 @code {
     record struct XY(int x, int y);
 
-    [DllImport("StructSample")] static extern XY get_xy();
+    //[StructLayout(LayoutKind.Sequential)]
+    //struct XY
+    //{
+    //    public int x { get; set; }
+    //    public int y { get; set; }
+    //}
+
+    //[DllImport("StructSample")] static extern XY get_xy();
+    [DllImport("StructSample")] 
+    // *** [return : MarshalAs(UnmanagedType.LPStruct)]
+    static extern XY get_xy();
+    // *** static extern IntPtr get_xy();
+
     [DllImport("StructSample")] static extern int sum_xy(XY p);
 
     string echo = string.Empty;
@@ -29,6 +41,15 @@
 
         // fails here
         var xyCpp = get_xy();
+
+        Echo("\nGetting a structure from C++ Library");
+        Echo(string.Format("xyCpp: {0}", xyCpp));
+
+        // ***
+        //var lexx = Marshal.PtrToStructure<XY>(xyCpp);
+
+        // Echo(string.Format("lexx: {0}", lexx));
+        // Echo(string.Format("lexx.x: {0}", lexx.x));
     }
 
     void Echo(string? message = null)
