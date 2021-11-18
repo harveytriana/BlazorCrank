@@ -10,8 +10,7 @@ namespace BlazorCrank
 
         static readonly delegate* unmanaged<int, void> _handlePromptPointer = &HandlePrompt;
 
-        [DllImport("CallbackSample", CallingConvention = CallingConvention.StdCall)]
-        static extern void UnmanagedPrompt(IntPtr cppCallback);
+        [DllImport("CallbackSample")] static extern void UnmanagedPrompt(IntPtr cppCallback);
 
         public static void ExecutePrompts()
         {
