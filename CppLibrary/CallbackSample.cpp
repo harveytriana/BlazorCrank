@@ -9,17 +9,17 @@
 
 using namespace std;
 
-// delegate
-typedef void(__stdcall* PFN_PROMPT)(int number);
+// event
+typedef void(*PromptHandler)(int number);
 
 // implementation
 extern "C" {
-    E void __stdcall UnmanagedPrompt(PFN_PROMPT fn) {
-        // simulation of somethng
-        for (int i = 1; i <= 10; i++)
-        {
-            this_thread::sleep_for(chrono::milliseconds(250));
-            fn(i); // trigger the callback
-        }
-    };
+	E void UnmanagedPrompt(PromptHandler notify) {
+		// simulation of somethng
+		for (int i = 1; i <= 10; i++)
+		{
+			this_thread::sleep_for(chrono::milliseconds(250));
+			notify(i); // callback
+		}
+	};
 }

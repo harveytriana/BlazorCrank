@@ -3,11 +3,14 @@
  * By: harveytriana@gmail.com
  */
 
+using ConsoleAppTest;
+
 Console.WriteLine("C++ Calls Demostration");
 Console.WriteLine("----------------------");
 
-// OK
-new CppSamples().Run();
+// new CppSamples().Run();
+// CppStructFromPointer.Run();
 
-// OK
-CppStructFromPointer.Run();
+new ECallbackSample().Run();
+
+CsCallbackSample.Run().Wait();
