@@ -27,7 +27,7 @@ public unsafe class CallbackExperiment
     // extern ---------------------------------------------------------------
     const string CLIB = "CallbackSample";
 
-    [DllImport(CLIB)] static extern void UnmanagedPrompt(IntPtr cppCallback);
+    [DllImport(CLIB)] static extern void UnmanagedPrompt(IntPtr notify);
     // theory
     // [DllImport(CLIB)] static extern void UnmanagedPrompt(delegate *unmanaged<int,void> cppCallback);
 }
