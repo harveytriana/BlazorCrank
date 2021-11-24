@@ -16,8 +16,7 @@
         await Task.Delay(1000);
 
         CallbackExperiment.Echo += Echo;
-
-        CallbackExperiment.ExecutePrompts();
+        CallbackExperiment.Run();
     }
 
     async Task Echo(string? message = null)

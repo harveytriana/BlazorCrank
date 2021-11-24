@@ -15,8 +15,8 @@ struct  Legs
 };
 
 extern "C" {
-    E void greeting() {
-        cout << "Hello C++" << endl;
+    E void hello_world() {
+        cout << "Hello World! C++" << endl;
     }
 
     E float hypotenuse(Legs legs) {

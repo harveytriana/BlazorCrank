@@ -11,7 +11,7 @@ class ECallbackSample
     
     public void Run()
     {
-        Console.WriteLine("\nRunning Sample C++");
+        Console.WriteLine("\nRunning C++");
 
         // call a C++ method
         UnmanagedPrompt(OnRaiseNumber);
@@ -19,12 +19,11 @@ class ECallbackSample
 
     private void OnRaiseNumber(int number)
     {
-        Console.WriteLine($"arrives extern number: {number}");
+        Console.WriteLine($"Arrives extern number: {number}");
     }
 
     // extern -----------------------------------------------------
-    const string ELIB = "CppLibrary.dll";
+    const string CLIB = "CppLibrary.dll";
 
-    [DllImport(ELIB)] static extern void UnmanagedPrompt(RaiseNumber cppCallback);
-
+    [DllImport(CLIB)] static extern void UnmanagedPrompt(RaiseNumber cppCallback);
 }

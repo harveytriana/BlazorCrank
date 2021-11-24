@@ -10,16 +10,16 @@
 using namespace std;
 
 // delegate
-typedef void(*PFN_PROMPT)(int number);
+typedef void(*PromptHandler)(int number);
 
 // implementation
 extern "C" {
-	E void UnmanagedPrompt(PFN_PROMPT fn) {
+	E void UnmanagedPrompt(PromptHandler notify) {
 		// simulation of somethng
 		for (int i = 1; i <= 10; i++)
 		{
 			this_thread::sleep_for(chrono::milliseconds(250));
-			fn(i); // trigger the callback
+			notify(i); // callback
 		}
 	};
 }

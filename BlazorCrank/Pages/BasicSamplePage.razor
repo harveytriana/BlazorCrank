@@ -7,23 +7,25 @@
 <pre>@echo</pre>
 
 @code {
+    const string CLIB = "BasicSample";
+
     record struct Legs(float X, float Y);
     
-    [DllImport("Sample")] static extern void greeting();
-    [DllImport("Sample")] static extern float hypotenuse(Legs legs);
+    [DllImport(CLIB)] static extern void hello_world();
+    [DllImport(CLIB)] static extern float hypotenuse(Legs legs);
 
     string echo = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
-        Echo("Calling C++ function...");
+        Echo("Calling C++ functions...");
         await Task.Delay(500);
         CallCppFunctions();
     }
 
     void CallCppFunctions()
     {
-        greeting(); // console output
+        hello_world(); // console output
 
         var legs = new Legs { X = 9, Y = 11 };
         var h = hypotenuse(legs);
