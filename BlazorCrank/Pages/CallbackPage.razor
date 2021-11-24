@@ -1,5 +1,5 @@
 ﻿@page "/callback-sample"
-@using System.Text
+@using System.Runtime.InteropServices
 @implements IDisposable
 
 <h1>Native Dependencies - Callbacks</h1>
@@ -27,8 +27,7 @@
             echo = string.Empty;
         else {
             echo += $"{message}\n";
-            // Note. 
-            // Does not update UI immediately in Unmanaged CallersOnly process
+            // FIXME: Does not update UI immediately
             await InvokeAsync(StateHasChanged);
         }
     }

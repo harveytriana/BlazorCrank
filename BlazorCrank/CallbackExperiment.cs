@@ -24,9 +24,11 @@ public unsafe class CallbackExperiment
         Echo?.Invoke($"Arrives external number: {number}");
     }
 
-    // extern -----------------------------------------------------
+    // extern ---------------------------------------------------------------
     const string CLIB = "CallbackSample";
 
     [DllImport(CLIB)] static extern void UnmanagedPrompt(IntPtr cppCallback);
+    // theory
+    // [DllImport(CLIB)] static extern void UnmanagedPrompt(delegate *unmanaged<int,void> cppCallback);
 }
 
