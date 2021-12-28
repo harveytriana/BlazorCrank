@@ -16,4 +16,4 @@ Console.WriteLine("----------------------");
 
 // CsCallbackSample.Run().Wait();
 
-CppMeethodTest.Run();
+CppObject.Run();

@@ -1,0 +1,70 @@
+﻿@page "/cpp-class"
+@using System.Text
+
+<h1>Native Dependencies - Experiments</h1>
+<hr />
+<p>Working with C++ Method (instance)</p>
+<pre>@echo</pre>
+
+@code {
+
+    string echo = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Echo("Using C++ Objects");
+        await Task.Delay(500);
+
+        using var cat = new Animal(3);
+        cat.GetOlder();
+
+        using var dog = new Animal(5);
+        dog.GetOlder();
+
+        Echo(string.Format("Cat age : {0}", cat.Age));
+        Echo(string.Format("Dog age : {0}", dog.Age));
+    }
+
+    void Echo(string? message = null)
+    {
+        if (message is null)
+            echo = string.Empty;
+        else {
+            echo += $"{message}\n";
+            StateHasChanged();
+        }
+    }
+
+    class Animal : IDisposable
+    {
+        readonly nint _handle;
+
+        public Animal(int age)
+        {
+            _handle = animal_new(age);
+        }
+
+        public int Age {
+            get {
+                return animal_get_age(_handle);
+            }
+        }
+
+        public void GetOlder()
+        {
+            animal_get_older(_handle);
+        }
+
+        public void Dispose()
+        {
+            animal_dispose(_handle);
+        }
+
+        const string CPPLIB = "Animal";
+
+        [DllImport(CPPLIB)] static extern nint animal_new(int age);
+        [DllImport(CPPLIB)] static extern int animal_get_age(nint obj);
+        [DllImport(CPPLIB)] static extern void animal_get_older(nint obj);
+        [DllImport(CPPLIB)] static extern void animal_dispose(nint obj);
+    }
+}
