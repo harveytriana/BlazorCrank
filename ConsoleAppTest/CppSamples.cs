@@ -32,6 +32,8 @@ class CppSamples
     //[return: MarshalAs(UnmanagedType.LPStruct)]
     [DllImport(CPPLIB)] static extern IntPtr get_xy_ptr();
 
+    // 
+
     public void Run()
     {
         Console.WriteLine("Basic test:");

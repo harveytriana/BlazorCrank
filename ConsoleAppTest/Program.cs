@@ -11,6 +11,8 @@ Console.WriteLine("----------------------");
 // new CppSamples().Run();
 // CppStructFromPointer.Run();
 
-new ECallbackSample().Run();
+// new ECallbackSample().Run();
 
-CsCallbackSample.Run().Wait();
+// CsCallbackSample.Run().Wait();
+
+InvokingACppMethod.Run();
