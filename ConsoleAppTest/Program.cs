@@ -12,8 +12,8 @@ Console.WriteLine("----------------------");
 
 // CppStructTest.Run();
 
-new CppCallbackTest().Run();
+//new CppCallbackTest().Run();
 
 // CsCallbackSample.Run().Wait();
 
-//InvokingACppMethod.Run();
+CppMeethodTest.Run();
