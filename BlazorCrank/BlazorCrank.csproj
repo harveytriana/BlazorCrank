@@ -20,5 +20,6 @@
 		<NativeFileReference Include="CppLibrary/BasicSample.cpp" />
 		<NativeFileReference Include="CppLibrary/CallbackSample.cpp" />
 		<NativeFileReference Include="CppLibrary/StructSample.cpp" />
+		<NativeFileReference Include="CppLibrary/Something.cpp" />
 	</ItemGroup>
 </Project>

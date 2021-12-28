@@ -3,7 +3,7 @@
  */
 using System.Runtime.InteropServices;
 
-class InvokingACppMethod
+class CppMeethodTest
 {
     const string CPPLIB = "CppLibrary.dll";
 
