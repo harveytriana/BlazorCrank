@@ -10,7 +10,7 @@ class CsCallbackSample
         Console.WriteLine("\nRunning Sample C#");
         
         // call extern method (by simulate exists here)
-        await UnmanagedPrompt(OnRaiseNumber);
+        await ManagedPrompt(OnRaiseNumber);
     }
 
     static void OnRaiseNumber(int number)
@@ -19,7 +19,7 @@ class CsCallbackSample
     }
 
     // extern -----------------------------------------------------
-    public static async Task UnmanagedPrompt(RaiseNumber notify)
+    public static async Task ManagedPrompt(RaiseNumber notify)
     {
         for (int i = 1; i <= 10; i++) {
             await Task.Delay(250);

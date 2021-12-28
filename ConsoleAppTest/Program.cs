@@ -8,11 +8,12 @@ using ConsoleAppTest;
 Console.WriteLine("C++ Calls Demostration");
 Console.WriteLine("----------------------");
 
-// new CppSamples().Run();
-// CppStructFromPointer.Run();
+//new CppSamples().Run();
 
-// new ECallbackSample().Run();
+// CppStructTest.Run();
+
+new CppCallbackTest().Run();
 
 // CsCallbackSample.Run().Wait();
 
-InvokingACppMethod.Run();
+//InvokingACppMethod.Run();

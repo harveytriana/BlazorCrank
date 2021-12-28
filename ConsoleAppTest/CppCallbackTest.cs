@@ -4,7 +4,7 @@
  */
 using System.Runtime.InteropServices;
 
-class ECallbackSample
+class CppCallbackTest
 {
     // event
     public delegate void RaiseNumber(int number);

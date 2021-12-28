@@ -4,7 +4,7 @@
  */
 using System.Runtime.InteropServices;
 
-class CppStructFromPointer
+class CppStructTest
 {
     const string CPPLIB = "CppLibrary.dll";
 
