@@ -14,11 +14,11 @@ typedef void(*PromptHandler)(int number);
 
 // implementation
 extern "C" {
-	E void UnmanagedPrompt(PromptHandler notify) {
+	E void UnmanagedPrompt(int number, int sleep_ms, PromptHandler notify) {
 		// simulation of somethng
-		for (int i = 1; i <= 10; i++)
+		for (int i = 1; i <= number; i++)
 		{
-			this_thread::sleep_for(chrono::milliseconds(250));
+			this_thread::sleep_for(chrono::milliseconds(sleep_ms));
 			notify(i); // callback
 		}
 	};

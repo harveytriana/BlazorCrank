@@ -10,12 +10,12 @@ public unsafe class CallbackExperiment
 
     static readonly delegate* unmanaged<int, void> OnRaiseNumberPointer = &OnRaiseNumber;
 
-    public static void Run()
+    public static void Run(int number, int sleep_ms)
     {
         Console.WriteLine("\nRunning C++");
 
         // call a C++ method
-        UnmanagedPrompt((IntPtr)OnRaiseNumberPointer);
+        UnmanagedPrompt(number, sleep_ms, (IntPtr)OnRaiseNumberPointer);
     }
 
     [UnmanagedCallersOnly]
@@ -27,7 +27,7 @@ public unsafe class CallbackExperiment
     // extern ---------------------------------------------------------------
     const string CLIB = "CallbackSample";
 
-    [DllImport(CLIB)] static extern void UnmanagedPrompt(IntPtr notify);
+    [DllImport(CLIB)] static extern void UnmanagedPrompt(int number, int sleep_ms, IntPtr notify);
     // theory
     // [DllImport(CLIB)] static extern void UnmanagedPrompt(delegate *unmanaged<int,void> cppCallback);
 }

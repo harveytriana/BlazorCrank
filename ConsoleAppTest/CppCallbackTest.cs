@@ -8,13 +8,13 @@ class CppCallbackTest
 {
     // event
     public delegate void RaiseNumber(int number);
-    
+
     public void Run()
     {
         Console.WriteLine("\nRunning C++");
 
         // call a C++ method
-        UnmanagedPrompt(OnRaiseNumber);
+        UnmanagedPrompt(12, 250, OnRaiseNumber);
     }
 
     private void OnRaiseNumber(int number)
@@ -25,5 +25,5 @@ class CppCallbackTest
     // extern -----------------------------------------------------
     const string CLIB = "CppLibrary.dll";
 
-    [DllImport(CLIB)] static extern void UnmanagedPrompt(RaiseNumber cppCallback);
+    [DllImport(CLIB)] static extern void UnmanagedPrompt(int number, int sleep_ms, RaiseNumber cppCallback);
 }

@@ -5,18 +5,35 @@
 <h1>Native Dependencies - Callbacks</h1>
 <hr />
 <p>Look at the console output in browser development tools</p>
+<h3>@clock</h3>
+<div>
+    <button @onclick="Start">Start</button>
+</div>
+<hr />
 <pre>@echo</pre>
 
 @code {
     string echo = string.Empty;
+    string clock = "00:00:00";
+
+    Timer? timer;
 
     protected override async Task OnInitializedAsync()
     {
         await Echo("Try C++ Callback.");
-        await Task.Delay(1000);
-
         CallbackExperiment.Echo += Echo;
-        CallbackExperiment.Run();
+
+        timer = new Timer(async _ => {
+            clock = DateTime.UtcNow.ToString("HH:mm:ss");
+            await InvokeAsync(StateHasChanged);
+        }, null, 0, 1000);
+    }
+
+    void Start()
+    {
+        Task.Run(() => {
+            CallbackExperiment.Run(8, 300);
+        });
     }
 
     async Task Echo(string? message = null)
@@ -35,5 +52,6 @@
     public void Dispose()
     {
         CallbackExperiment.Echo -= Echo;
+        timer?.Dispose();
     }
 }
