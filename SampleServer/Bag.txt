@@ -1,0 +1,36 @@
+﻿
+// like streaming
+app.MapGet("/yieldlist", () => FetchItems());
+
+static async IAsyncEnumerable<int> FetchItems()
+{
+    for(int i = 1; i <= 20; i++) {
+        await Task.Delay(250);
+        yield return i;
+    }
+}
+----------------------------------------------------------------
+IAsyncEnumerable in ASP.NET Core Example
+Let’s implement an API controller that returns IAsyncEnumerable:
+
+[Route("api/[controller]")]
+[ApiController]
+public class ValuesController : ControllerBase
+{
+    [HttpGet]
+    public IAsyncEnumerable<int> Get()
+    {
+        return FetchItems();
+    }
+    static async IAsyncEnumerable<int> FetchItems()
+    {
+        for (int i = 1; i <= 10; i++)
+        {
+            await Task.Delay(1000);
+            yield return i;
+        }
+    }
+}
+In this example, we are using the same FetchItems() method that we implemented earlier 
+which returns an async stream of data. From the API endpoint, we just return the async 
+stream as such. Also, notice that the Get action method returns IAsyncEnumerable type.
