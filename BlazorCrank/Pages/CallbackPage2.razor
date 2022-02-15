@@ -5,7 +5,9 @@
 
 <h1>Callbacks</h1>
 <hr />
-<p>Look at the output here</p>
+<p>
+    The server at <span style="color:chocolate">@_apiRoot</span> must be running.
+</p>
 <h3>@clock</h3>
 <div>
     <button class="btn btn-primary sm w-25" @onclick="StartAsync">Start</button>
@@ -24,6 +26,8 @@
     string _name = $"Blazor-{Random.Shared.Next(100, 900):000}";
 
     HttpClient? _client;
+    string? _apiRoot;
+    bool _connected;
 
     protected override async Task OnInitializedAsync()
     {
@@ -31,10 +35,10 @@
 
         _client = _clientFactory.CreateClient("SampleServer");
 
-        Console.WriteLine("address: {0}", _client.BaseAddress);
+        _apiRoot = _client.BaseAddress?.ToString();
 
         _hubConnection = new HubConnectionBuilder()
-          .WithUrl(_client.BaseAddress + "Transmitter")
+          .WithUrl(_apiRoot + "Transmitter")
           .Build();
 
         _hubConnection.On<string, int>("Broadcast", async (name, number) => {
@@ -45,6 +49,7 @@
 
         try {
             await _hubConnection.StartAsync();
+            _connected = _hubConnection.State == HubConnectionState.Connected;
         }
         catch(Exception exception) {
             echo = "Exception: " + exception.Message;
@@ -59,7 +64,8 @@
 
     async Task StartAsync()
     {
-        if(_client is null) {
+        if(_client is null || _connected == false) {
+            echo = "Server is not ready.";
             return;
         }
         var rq = $"RunProcess/{_name}/20";

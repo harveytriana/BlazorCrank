@@ -7,7 +7,8 @@
 <p>Look at the console output in browser development tools</p>
 <h3>@clock</h3>
 <div>
-    <button @onclick="Start">Start</button>
+    <button class="btn btn-primary sm w-25" @onclick="Start">Start</button>
+    <button class="btn btn-primary sm w-25" @onclick="Clear">Clear</button>
 </div>
 <hr />
 <pre>@echo</pre>
@@ -40,13 +41,18 @@
     {
         Console.WriteLine("Echo: {0}", message);
 
-        if (message is null)
+        if(message is null)
             echo = string.Empty;
         else {
             echo += $"{message}\n";
             // FIXME: Does not update UI immediately
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    void Clear()
+    {
+        echo = string.Empty;
     }
 
     public void Dispose()
