@@ -1,0 +1,81 @@
+﻿@page "/callback-sample2"
+@using Microsoft.AspNetCore.SignalR.Client
+@implements IAsyncDisposable
+@inject IHttpClientFactory _clientFactory
+
+<h1>Callbacks</h1>
+<hr />
+<p>Look at the output here</p>
+<h3>@clock</h3>
+<div>
+    <button class="btn btn-primary sm w-25" @onclick="StartAsync">Start</button>
+    <button class="btn btn-primary sm w-25" @onclick="Clear">Clear</button>
+</div>
+<hr />
+<pre>@echo</pre>
+
+@code {
+    string echo = string.Empty;
+    string clock = "00:00:00";
+
+    Timer? timer;
+
+    HubConnection? _hubConnection;
+    string _name = $"Blazor-{Random.Shared.Next(100, 900):000}";
+
+    HttpClient? _client;
+
+    protected override async Task OnInitializedAsync()
+    {
+        echo = "Try C++ Callback\n";
+
+        _client = _clientFactory.CreateClient("SampleServer");
+
+        Console.WriteLine("address: {0}", _client.BaseAddress);
+
+        _hubConnection = new HubConnectionBuilder()
+          .WithUrl(_client.BaseAddress + "Transmitter")
+          .Build();
+
+        _hubConnection.On<string, int>("Broadcast", async (name, number) => {
+            echo += $"{name} Receiving from the server: {number}\n";
+            //
+            await InvokeAsync(StateHasChanged);
+        });
+
+        try {
+            await _hubConnection.StartAsync();
+        }
+        catch(Exception exception) {
+            echo = "Exception: " + exception.Message;
+        }
+
+        // To show that the main thread is not interrupted
+        timer = new Timer(async _ => {
+            clock = DateTime.UtcNow.ToString("HH:mm:ss");
+            await InvokeAsync(StateHasChanged);
+        }, null, 0, 1000);
+    }
+
+    async Task StartAsync()
+    {
+        if(_client is null) {
+            return;
+        }
+        var rq = $"RunProcess/{_name}/20";
+        var result = await _client.GetStringAsync(rq);
+
+        echo += $"Result: {result}";
+    }
+
+    void Clear()
+    {
+        echo = string.Empty;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if(_hubConnection is not null) await _hubConnection.DisposeAsync();
+        if(timer is not null) timer.Dispose();
+    }
+}

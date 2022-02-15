@@ -18,7 +18,7 @@ class CppBasicSample
     //
     [DllImport(CPPLIB)] static extern void UnmanagedPrompt(CppCallback cppCallback);
 
-    record struct XY(int x, int y);
+    record struct XY(int X, int Y);
     // OR...
     //struct XY
     //{
@@ -52,7 +52,7 @@ class CppBasicSample
         var sum = sum_xy(xy);
 
         Console.WriteLine("\nGetting a C++'s struct");
-        Console.WriteLine(string.Format("x: {0} y: {1}, Sum: {2}", xy.x, xy.y, sum));
+        Console.WriteLine(string.Format("x: {0} y: {1}, Sum: {2}", xy.X, xy.Y, sum));
     }
 
     private void HandlePrompt(int number)
