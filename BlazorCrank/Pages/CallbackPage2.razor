@@ -11,7 +11,7 @@
 <h3>@clock</h3>
 <div>
     <button class="btn btn-primary sm w-25" @onclick="StartAsync">Start</button>
-    <button class="btn btn-primary sm w-25" @onclick="Clear">Clear</button>
+    <button class="btn btn-info w-25" @onclick="Clear">Clear</button>
 </div>
 <hr />
 <pre>@echo</pre>
@@ -31,7 +31,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        echo = "Try C++ Callback\n";
+        echo = "C++ Callback\n";
         ActivateClock();
 
         _client = _clientFactory.CreateClient("SampleServer");
