@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31815.197
@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppTest", "ConsoleAp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppLibrary", "CppLibrary\CppLibrary.vcxproj", "{FFEE221F-70F8-47F0-8BE6-D21CB37ABAFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleServer", "SampleServer\SampleServer.csproj", "{5C9D95E6-148E-451F-BABB-0B6DA6061D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleServer", "SampleServer\SampleServer.csproj", "{5C9D95E6-148E-451F-BABB-0B6DA6061D6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
