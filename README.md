@@ -10,7 +10,7 @@ This project illustrate experience with native dependencies support for Blazor W
 - Struct Sample
 - Class Sample
 - Callback in Browser
-- callback from Server
+- Callback from Server
 
 To get into context, I have first written the experiment with a C# console and a C++ library (attached projects here). 
  
