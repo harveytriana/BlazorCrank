@@ -4,7 +4,7 @@ This project illustrate experience with native dependencies support for Blazor W
 
 ![Console Test](https://github.com/harveytriana/BlazorCrank/blob/master/Images/cs-cpp-index.png)
 
-**demonstrations**
+**Demonstrations**
 
 - Casic Sample
 - Struct Sample
