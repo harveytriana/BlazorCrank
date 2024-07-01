@@ -1,4 +1,4 @@
-## Native dependencies support for Blazor WebAssembly
+## Native dependencies support for Blazor WebAssembly - C++
 
 This project is intended to illustrate some experience with Native Depedences in Blazor, in this case C++. Also, the purpose is to show that there is an issue when using a C++ callback.
 
