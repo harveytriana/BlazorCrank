@@ -1,6 +1,6 @@
 ## Using C++ With Blazor WebAssembly
 
-Many people may not know that from a Blazor WA project we can use functions written in C and C++. It's all part of the Blazor feature that allows you to use native dependencies. You can find the basic description ![here](https://learn.microsoft.com/en-us/aspnet/core/blazor/webassembly-native-dependencies). In the present repository I show more complex examples to the basic documentation. We can also do the same with Rust, but the Rust code must be previously compiled to WA.
+Many people may not know that from a Blazor WA project we can use functions written in C and C++. It's all part of the Blazor feature that allows you to use native dependencies. You can find the basic description https://learn.microsoft.com/en-us/aspnet/core/blazor/webassembly-native-dependencies. In the present repository I show more complex examples to the basic documentation. We can also do the same with Rust, but the Rust code must be previously compiled to WA.
 
 But why would we want to do this? We may have code in C or some library that we want to use in our Blazor WA application. A commendable case is Skia Sharp. I'm currently using Blazor and SkiaSharp in the software I write for engineering, at the production level.
 
