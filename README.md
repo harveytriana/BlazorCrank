@@ -10,7 +10,7 @@ This project illustrate experience with native dependencies support for Blazor W
 
 **Demonstrations**
 
-- Casic Sample
+- Basic Sample
 - Struct Sample
 - Class Sample
 - Callback in Browser
